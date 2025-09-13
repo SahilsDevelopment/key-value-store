@@ -1,0 +1,21 @@
+services:
+  kvs_db:
+    image: postgres:15
+    container_name: kvs_db
+    environment:
+      POSTGRES_USER: kvs_user
+      POSTGRES_PASSWORD: kvs_password
+      POSTGRES_DB: kvs_database
+    ports:
+      - "5432:5432"
+    volumes:
+      - kvs_db_data:/var/lib/postgresql/data
+    networks:
+      - kvs_network
+
+volumes:  
+  kvs_db_data: {}
+
+networks:
+  kvs_network:
+    driver: bridge
